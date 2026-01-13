@@ -17,15 +17,38 @@
   },
   "permissions": {
     "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git checkout:*)",
+      "Bash(git switch:*)",
+      "Bash(git stash:*)",
+      "Bash(git restore:*)",
+      "Bash(git show:*)",
+      "Bash(git rev-parse:*)",
       "Bash(git config:*)",
-      "Bash(git push:*)",
+      "Bash(git fetch:*)",
+      "Bash(git reset:*)",
+      "Bash(git remote:*)",
+      "Bash(git pull:*)",
       "Bash(cat:*)",
       "Bash(find:*)",
       "Read(~/.aws/config)",
       "Edit(~/.claude/plans/**)"
     ],
     "ask": [
-      "WebFetch"
+      "WebFetch",
+      "Bash(git push:*)",
+      "Bash(git merge:*)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean -f*)",
+      "Bash(git push --force*)",
+      "Bash(git push * --force*)",
+      "Bash(git push -f*)",
+      "Bash(git push * -f *)"
     ],
     "deny": [
       "Read(~/.aws/cli/**)",
