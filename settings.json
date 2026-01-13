@@ -4,8 +4,9 @@
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
     "excludedCommands": [
-      "docker",
-      "gh"
+      "docker:*",
+      "gh:*",
+      "git:*"
     ],
     "network": {
       "allowUnixSockets": [
@@ -23,8 +24,10 @@
       "Read(~/.aws/config)",
       "Edit(~/.claude/plans/**)"
     ],
+    "ask": [
+      "WebFetch"
+    ],
     "deny": [
-      "Read(.envrc)",
       "Read(~/.aws/cli/**)",
       "Read(~/.aws/sso/**)",
       "Read(~/.aws/credentials)"
@@ -47,5 +50,18 @@
   "feedbackSurveyState": {
     "lastShownTime": 1754059296016
   },
-  "model": "opus"
+  "model": "opus",
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "permission_prompt|idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Glass.aiff"
+          }
+        ]
+      }
+    ]
+  }
 }
