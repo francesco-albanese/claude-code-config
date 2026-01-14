@@ -15,3 +15,4 @@ paths: ["**/*.py", "**/pyproject.toml", "**/ruff.toml"]
 - Comments for "why", not "what"
 - Strict type hints: TypedDict for structured Dicts, dataclasses for structured data containers
 - Use singletons for stateless/immutable classes
+- Imports go always at the top of the files, never mid file imports
