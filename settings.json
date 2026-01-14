@@ -34,6 +34,7 @@
       "Bash(git reset:*)",
       "Bash(git remote:*)",
       "Bash(git pull:*)",
+      "Bash(gh pr create:*)",
       "Bash(cat:*)",
       "Bash(find:*)",
       "Read(~/.aws/config)",
