@@ -27,6 +27,11 @@ You can use the following agents:
 - senior-python-dev - use it for ALL  Python applications
 - git-ops - use it for ALL git operations, following the Git preferences described above
 
+## Custom Skills
+
+- terraform-bootstrap - bootstrap Terraform projects with multi-account AWS patterns
+- ralph-bootstrap - bootstrap Ralph Wiggum templates for autonomous AI coding loops
+
 ## Agentic Coding
 
 - If you create any temporary new files, scripts, or helper files for iteration, clean up these files by removing them at the end of the task.
@@ -34,27 +39,7 @@ You can use the following agents:
 ## Rules Index
 
 Task-specific rules in `~/.claude/rules/`. Read relevant files before starting work:
-
-**Frontend:**
-- `frontend/react-stack.md` - React/Vite/Tailwind setup
-- `frontend/tanstack.md` - Tanstack ecosystem libs
-- `frontend/testing.md` - Vitest, Playwright, RTL
-- `frontend/code-quality.md` - BiomeJS, TypeScript
-- `frontend/ai-apps.md` - Vercel AI SDK, Mastra
-- `frontend/ssg-cms.md` - Gatsby, Contentful
-
-**Backend TypeScript:**
-- `backend/typescript/lambdas.md` - AWS Lambda patterns
-- `backend/typescript/testing.md` - Vitest, mocking
-- `backend/typescript/code-quality.md` - BiomeJS, tsc
-
-**Backend Python:**
-- `backend/python/package-manager.md` - uv, venv
-- `backend/python/code-quality.md` - ruff, pyright
-- `backend/python/testing.md` - pytest, httpx
-- `backend/python/async-patterns.md` - asyncio patterns
-- `backend/python/lambdas.md` - Lambda packaging
-- `backend/python/fastapi.md` - FastAPI, logging, config
-
-**Infrastructure:**
-- `infrastructure/terraform.md` - Terraform conventions
+- `frontend/` - react-stack, tanstack, testing, code-quality, ai-apps, ssg-cms
+- `backend/typescript/` - lambdas, testing, code-quality
+- `backend/python/` - package-manager, code-quality, testing, async-patterns, lambdas, fastapi
+- `infrastructure/` - terraform
