@@ -1,6 +1,7 @@
 ---
 name: ralph-bootstrap
 description: Bootstrap Ralph Wiggum autonomous coding templates in current project. Creates scripts/ralph/ dir and copies templates (prompt.md, prd.json, progress.txt). Use when users request (1) Setup/bootstrap/init Ralph Wiggum, (2) Add ralph templates to project, (3) Configure autonomous coding loop, (4) Setup AFK mode for Claude, (5) Initialize ralph-once or afk-ralph.
+allowed-tools: Bash, Write
 ---
 
 # Ralph Bootstrap
@@ -9,22 +10,13 @@ Bootstrap Ralph Wiggum templates for autonomous AI coding in the current project
 
 ## Quick Start
 
-When user requests ralph bootstrap/setup:
+Run the bootstrap script:
 
-1. **Create directory**:
-   ```bash
-   mkdir -p scripts/ralph
-   ```
+```bash
+~/.claude/skills/ralph-bootstrap/scripts/bootstrap.sh
+```
 
-2. **Copy templates**:
-   ```bash
-   cp ~/Documents/Development/ralph-wiggum-claude/templates/* scripts/ralph/
-   ```
-
-3. **Notify user**:
-   - Templates copied: `prompt.md`, `prd.json`, `progress.txt`
-   - Remind to edit `scripts/ralph/prd.json` with project tasks
-   - Remind to customize `scripts/ralph/prompt.md` if needed
+This creates `scripts/ralph/` with all required templates.
 
 ## Files Created
 
