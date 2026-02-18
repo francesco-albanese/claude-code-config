@@ -7,6 +7,7 @@
 ## Tooling
 - Use `tfenv` for version management
 - Run `tflint` before committing
+- After any terraform change, run `make fmt` to recursively format all terraform files
 
 ## Project Initialization
 - Use custom skill `terraform-bootstrap` for new projects
