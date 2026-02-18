@@ -1,19 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": true,
-    "excludedCommands": [
-      "docker:*",
-      "gh:*",
-      "git:*"
-    ],
-    "network": {
-      "allowUnixSockets": [
-        "/var/run/docker.sock"
-      ],
-      "allowLocalBinding": true
-    }
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
   "permissions": {
     "allow": [
@@ -40,6 +28,11 @@
       "Read(~/.aws/config)",
       "Edit(~/.claude/plans/**)"
     ],
+    "deny": [
+      "Read(~/.aws/cli/**)",
+      "Read(~/.aws/sso/**)",
+      "Read(~/.aws/credentials)"
+    ],
     "ask": [
       "WebFetch",
       "Bash(git push:*)",
@@ -51,28 +44,7 @@
       "Bash(git push -f*)",
       "Bash(git push * -f *)"
     ],
-    "deny": [
-      "Read(~/.aws/cli/**)",
-      "Read(~/.aws/sso/**)",
-      "Read(~/.aws/credentials)"
-    ],
     "defaultMode": "plan"
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "bash -c 'DIR=$(basename $PWD); BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null); if [ -n \"$BRANCH\" ]; then PREFIX=\"$DIR/$BRANCH\"; else PREFIX=\"$DIR\"; fi; echo \"$PREFIX | $(pnpx ccusage statusline -B emoji-text)\"'",
-    "padding": 0
-  },
-  "enabledPlugins": {
-    "example-skills@anthropic-agent-skills": false,
-    "document-skills@anthropic-agent-skills": false,
-    "typescript-lsp@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true
-  },
-  "feedbackSurveyState": {
-    "lastShownTime": 1754059296016
   },
   "model": "opus",
   "hooks": {
@@ -87,5 +59,36 @@
         ]
       }
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/ccline/ccline",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "example-skills@anthropic-agent-skills": true,
+    "document-skills@anthropic-agent-skills": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "network": {
+      "allowUnixSockets": [
+        "/var/run/docker.sock"
+      ],
+      "allowLocalBinding": true
+    },
+    "excludedCommands": [
+      "docker:*",
+      "gh:*",
+      "git:*"
+    ]
+  },
+  "feedbackSurveyState": {
+    "lastShownTime": 1754059296016
   }
 }
