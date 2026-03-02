@@ -1,6 +1,8 @@
 ---
 name: terraform-bootstrap
-description: Bootstrap Terraform projects following multi-account AWS patterns with centralized state management, environment separation, and CI/CD integration. Use when users request (1) Bootstrap/setup/initialize terraform configuration/project, (2) Create initial terraform structure/folder structure, (3) Setup terraform following established patterns/conventions, or (4) Starting new AWS infrastructure projects with Terraform.
+description: Bootstrap Terraform projects with multi-account AWS patterns, centralized state management, and CI/CD. Use when bootstrapping, initializing, or scaffolding a new Terraform project, setting up AWS infrastructure folder structure, or starting a new terraform configuration.
+argument-hint: "[project-name]"
+allowed-tools: Bash, Write, Read, AskUserQuestion
 ---
 
 # Terraform Bootstrap
@@ -13,7 +15,7 @@ When user requests terraform project initialization:
 
 1. **Run bootstrap script**:
    ```bash
-   python scripts/bootstrap_project.py --project-name <name> [--output-dir <path>]
+   python ~/.claude/skills/terraform-bootstrap/scripts/bootstrap_project.py --project-name <name> [--output-dir <path>]
    ```
 
 2. **Customize generated files**:
@@ -62,51 +64,6 @@ Bootstrap creates:
         └── terraform-deploy.yml        # CI/CD workflow
 ```
 
-## Makefile Commands
-
-```bash
-# Initialize terraform with state.conf
-make environmental-init ACCOUNT=sandbox
-
-# Plan changes
-make environmental-plan ACCOUNT=staging AWS_PROFILE=staging
-
-# Apply changes
-make environmental-apply ACCOUNT=production
-
-# Format code
-make fmt
-
-# Clean .terraform/
-make environmental-clean
-```
-
-## Customization Points
-
-**state.conf**:
-- `bucket`: S3 bucket name for state
-- `role_arn`: IAM role for cross-account access
-- `region`: AWS region
-
-**providers.tf**:
-- Default tags (change `franco:` prefix)
-- Terraform role name (currently `terraform`)
-
-**env/*.tfvars**:
-- `account_id`: AWS account ID
-- `account_name`: Environment name
-- `region`: AWS region
-
-**GitHub Actions**:
-- Workflow triggers (push to main, PR, manual)
-- Environment approval rules
-- AWS credentials configuration
-
-**Cross-Account Trust (GitHub OIDC)**:
-- Shared-services terraform role must trust target account terraform roles
-- Target account roles need OIDC trust + ability to assume shared-services role
-- See [architecture.md](references/architecture.md#github-oidc--cross-account-state-access) for setup
-
 ## Workflow
 
 1. **Bootstrap**: Run script, creates structure
@@ -116,41 +73,7 @@ make environmental-clean
 5. **Deploy**: Push to GitHub → Actions runs → Deploys to sandbox
 6. **Promote**: Manual workflow dispatch for staging/uat/production
 
-## GitHub Actions Integration
+## Additional Resources
 
-Generated workflow:
-- Defaults to sandbox environment
-- Requires manual approval for staging/uat/production
-- Uses OIDC or AWS credentials from secrets
-- Runs terraform init/plan/apply with appropriate flags
-- Supports multiple environments in single workflow
-
-Configure AWS credentials in GitHub:
-- OIDC (recommended): Configure trust relationship
-- Secrets: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`
-
-## Security Patterns
-
-- **Assume role**: Cross-account access via terraform role
-- **State encryption**: SSE-S3 (free) not SSE-KMS
-- **Default tags**: Track resources by stack/environment/managed_by
-- **External ID**: Cross-account security (if needed)
-- **Public access blocked**: S3 bucket hardened
-- **GitIgnore**: state.conf, *.tfvars, .terraform/
-
-## Common Operations
-
-**Add new environment**:
-1. Create `env/<new-env>.tfvars`
-2. Add Make variables in `makefiles/terraform.mk`
-3. Update GitHub Actions matrix
-
-**Change state backend**:
-1. Update `state.conf`
-2. Run `make environmental-init ACCOUNT=<env>`
-3. Migrate state if needed
-
-**Switch AWS profile**:
-```bash
-make environmental-plan ACCOUNT=sandbox AWS_PROFILE=my-profile
-```
+- [Architecture details](references/architecture.md)
+- [Commands, customization, operations](references/operations.md)

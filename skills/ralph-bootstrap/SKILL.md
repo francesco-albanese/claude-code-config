@@ -1,6 +1,6 @@
 ---
 name: ralph-bootstrap
-description: Bootstrap Ralph Wiggum autonomous coding templates in current project. Creates scripts/ralph/ dir and copies templates (prompt.md, prd.json, progress.txt). Use when users request (1) Setup/bootstrap/init Ralph Wiggum, (2) Add ralph templates to project, (3) Configure autonomous coding loop, (4) Setup AFK mode for Claude, (5) Initialize ralph-once or afk-ralph.
+description: Bootstrap Ralph Wiggum autonomous coding templates in the current project. Use when setting up Ralph Wiggum, adding ralph templates, configuring an autonomous coding loop, or initializing AFK mode for Claude.
 allowed-tools: Bash, Write
 ---
 
