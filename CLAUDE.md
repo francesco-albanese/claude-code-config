@@ -31,6 +31,7 @@ You can use the following agents:
 
 - terraform-bootstrap - bootstrap Terraform projects with multi-account AWS patterns
 - ralph-bootstrap - bootstrap Ralph Wiggum templates for autonomous AI coding loops
+- claude-md - generate or improve CLAUDE.md files following best practices
 
 ## Agentic Coding
 
