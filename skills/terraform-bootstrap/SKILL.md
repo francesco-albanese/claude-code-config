@@ -19,7 +19,7 @@ When user requests terraform project initialization:
    ```
 
 2. **Customize generated files**:
-   - Update `state.conf` with actual S3 bucket and role ARN
+   - Update `state.conf` with actual S3 bucket and role ARN (key is passed per-stack via Makefile)
    - Adjust account IDs in `env/*.tfvars`
    - Modify default tags in `providers.tf`
 

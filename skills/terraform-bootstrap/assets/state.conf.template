@@ -9,7 +9,7 @@
 # See architecture.md for trust policy configuration and setup checklist.
 
 bucket       = "franco-multi-account-sso-terraform-state-f66108d0"
-key          = "shared-services/terraform.tfstate"
+# key passed per-stack via Makefile (see terraform.mk)
 region       = "eu-west-2"
 use_lockfile = true
 encrypt      = true
