@@ -25,6 +25,7 @@ make environmental-clean
 - `bucket`: S3 bucket name for state
 - `role_arn`: IAM role for cross-account access
 - `region`: AWS region
+- `key`: Not in state.conf — passed per-stack via Makefile (see terraform.mk)
 
 **providers.tf**:
 - Default tags (change `franco:` prefix)

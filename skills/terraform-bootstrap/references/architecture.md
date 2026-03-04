@@ -62,7 +62,7 @@ Backend configuration externalized to `state.conf` file (gitignored):
 
 ```hcl
 bucket       = "<bucket-name>"
-key          = "<stack>/terraform.tfstate"
+# key passed per-stack via Makefile (see terraform.mk)
 region       = "eu-west-2"
 use_lockfile = true
 encrypt      = true
@@ -71,7 +71,7 @@ assume_role = {
 }
 ```
 
-Initialize with: `terraform init -backend-config=../../state.conf`
+Initialize with: `make environmental-init ACCOUNT=sandbox`
 
 ## Separation of Concerns
 

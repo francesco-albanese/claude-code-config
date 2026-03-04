@@ -99,7 +99,9 @@ destroy: $(addsuffix -destroy, $(STACKS))
 %-init:
 	@echo "++++ Initializing $* stack ++++"
 	@if [ -f $(STATE_CONF) ]; then \
-		$(terraform) -chdir=terraform/$* init -backend-config=../../$(STATE_CONF) $($*_FLAGS) $(TF_FLAGS); \
+		KEY_FLAG=""; \
+		if [ -n "$($*_KEY)" ]; then KEY_FLAG='-backend-config=key=$($*_KEY)/terraform.tfstate'; fi; \
+		$(terraform) -chdir=terraform/$* init -backend-config=../../$(STATE_CONF) $$KEY_FLAG $($*_FLAGS) $(TF_FLAGS); \
 	else \
 		$(terraform) -chdir=terraform/$* init $($*_FLAGS) $(TF_FLAGS); \
 	fi
