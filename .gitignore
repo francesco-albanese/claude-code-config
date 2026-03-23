@@ -25,9 +25,18 @@ settings.json.backup
 # Backup files
 *~
 *.backup
+.claude.json.backup*
 
 # Internal
 .anthropic/
+
+# CC line
+ccline/
+
+# Sessions/tasks/teams
+sessions/
+tasks/
+teams/
 
 # macOS
 .DS_Store

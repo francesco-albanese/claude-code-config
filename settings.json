@@ -88,6 +88,7 @@
       "git:*"
     ]
   },
+  "voiceEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754059296016
   }
