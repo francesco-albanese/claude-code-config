@@ -34,7 +34,6 @@
       "Read(~/.aws/credentials)"
     ],
     "ask": [
-      "WebFetch",
       "Bash(git push:*)",
       "Bash(git merge:*)",
       "Bash(git reset --hard*)",
