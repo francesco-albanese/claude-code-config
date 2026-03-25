@@ -18,6 +18,7 @@ config/
 # History/state
 history.jsonl
 stats-cache.json
+mcp-needs-auth-cache.json
 
 # Settings backup
 settings.json.backup
