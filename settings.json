@@ -66,11 +66,20 @@
         ]
       },
       {
-        "matcher": "Edit|Write",
+        "matcher": "Read|Edit|Write",
         "hooks": [
           {
             "type": "command",
             "command": "~/.claude/hooks/protect-files.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/block-cat-sensitive.sh"
           }
         ]
       }
@@ -86,17 +95,7 @@
         ]
       }
     ],
-    "PermissionRequest": [
-      {
-        "matcher": "ExitPlanMode",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "echo '{\"hookSpecificOutput\": {\"hookEventName\": \"PermissionRequest\", \"decision\": {\"behavior\": \"allow\"}}}'"
-          }
-        ]
-      }
-    ],
+    "PermissionRequest": [],
     "Notification": [
       {
         "matcher": "permission_prompt|idle_prompt",
