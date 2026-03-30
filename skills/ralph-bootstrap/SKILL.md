@@ -1,30 +1,30 @@
 ---
 name: ralph-bootstrap
-description: Bootstrap Ralph Wiggum autonomous coding templates in the current project. Use when setting up Ralph Wiggum, adding ralph templates, configuring an autonomous coding loop, or initializing AFK mode for Claude.
-allowed-tools: Bash, Write
+description: This skill should be used when the user asks to: "initialise Ralph", "bootstrap Ralph", "set up Ralph Wiggum", "add Ralph to project", "create Ralph directory" or wants to set up autonomous coding loops with Ralph.
 ---
 
 # Ralph Bootstrap
 
-Bootstrap Ralph Wiggum templates for autonomous AI coding in the current project.
+Initialise Ralph Wiggum Autonomous Coding loop in current project.
 
-## Quick Start
+## Prerequisites
 
-Run the bootstrap script:
+- `gh` CLI installed and authenticated
+- Github task issues created iva `/prd-to-issues` skill
+
+## Run the bootstrap script
 
 ```bash
 ~/.claude/skills/ralph-bootstrap/scripts/bootstrap.sh
 ```
 
-This creates `scripts/ralph/` with all required templates.
+This creates `scripts/ralph/` directory with prompt template.
 
 ## Files Created
 
 ```
 scripts/ralph/
-├── prompt.md      # Instructions for Claude
-├── prd.json       # Task list (user stories) - EDIT THIS
-└── progress.txt   # Progress log between iterations
+├── prompt.md # Instructions for Claude (reads tasks from Github issues)
 ```
 
 ## Usage After Bootstrap
@@ -34,8 +34,12 @@ scripts/ralph/
 ralph-once
 
 # AFK mode - 10 iterations (default)
-afk-ralph
-
-# AFK mode - custom iterations
 afk-ralph 25
 ```
+
+## Workflow
+
+1. `/write-a-prd` - create PRD as Github issue
+2. `/prd-to-issues` - break PRD into tasks issues + create Progress Log
+3. `/ralph-bootstrap` - set up local prompt in project
+4. `ralph-once` or `afk-ralph` - run autonous coding loops

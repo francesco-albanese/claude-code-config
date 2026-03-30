@@ -55,6 +55,12 @@ For each approved slice, create a GitHub issue using `gh issue create`. Use the 
 
 Create issues in dependency order (blockers first) so you can reference real issue numbers in the "Blocked by" field.
 
+After creating each issue, ensure labels exist and are applied:
+- Create labels if they don't exist `gh label create "status:blocked" --repo "owner/repo" --color "fbca04" --description "Blocked by dependency"` Note: --color takes hex without the # prefix`
+- Apply label and milestone to each issue `gh issue edit <issue-number> --repo "owner/repo" --milestone "<milestone-title>" --add-label "<label1>,<label2>"`
+
+Ask the user which milestone to assign, or create one if needed.
+
 <issue-template>
 ## Parent PRD
 
@@ -86,3 +92,36 @@ Reference by number from the parent PRD:
 </issue-template>
 
 Do NOT close or modify the parent PRD issue.
+
+### 6. Create supporting labels and Progress Log
+
+After all task issues are created:
+
+1. Create the `in-progress` and `done` labels if they don't exist:
+
+```bash
+ gh label create "in-progress" --repo "owner/repo" --color "fbca04" --description "Work currently underway"
+ gh label create "done" --repo "owner/repo" --color "0e8a16" --description "Work completed"
+ gh label create "progress-log" --repo "owner/repo" --color "c5def5" --description "Progress log for autonomous coding loop"
+```
+
+2. Create a Progress Log issue for the PRD:
+
+```bash
+
+gh issue create --repo "owner/repo" --title "[Progress Log] <PRD title>" --label "progress-log" --milestone "<milestone>" --body "$(cat <<'EOF'
+
+## Parent PRD
+
+# <prd-issue-number>
+
+## Codebase Patterns
+
+(Add patterns discovered during implementation)
+
+## Key Files
+
+(List important files for context)
+EOF
+)"
+```
