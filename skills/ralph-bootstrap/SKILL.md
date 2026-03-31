@@ -42,4 +42,4 @@ afk-ralph 25
 1. `/write-a-prd` - create PRD as Github issue
 2. `/prd-to-issues` - break PRD into tasks issues + create Progress Log
 3. `/ralph-bootstrap` - set up local prompt in project
-4. `ralph-once` or `afk-ralph` - run autonous coding loops
+4. `ralph-once` or `afk-ralph` - run autonomous coding loops
