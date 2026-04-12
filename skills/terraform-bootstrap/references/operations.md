@@ -4,19 +4,22 @@
 
 ```bash
 # Initialize terraform with state.conf
-make environmental-init ACCOUNT=sandbox
+make environmental-init ACCOUNT=sandbox AWS_PROFILE=sandbox-admin
 
 # Plan changes
-make environmental-plan ACCOUNT=staging AWS_PROFILE=staging
+make environmental-plan ACCOUNT=staging AWS_PROFILE=staging-admin
 
 # Apply changes
-make environmental-apply ACCOUNT=production
+make environmental-apply ACCOUNT=production AWS_PROFILE=production-admin
 
 # Format code
 make fmt
 
 # Clean .terraform/
 make environmental-clean
+
+# CI/CD (OIDC — empty AWS_PROFILE skips profile prefix)
+make environmental-plan ACCOUNT=sandbox AWS_PROFILE=
 ```
 
 ## Customization Points

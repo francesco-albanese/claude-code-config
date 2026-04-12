@@ -1,6 +1,10 @@
 SHELL := /bin/bash
 
+ifneq ($(AWS_PROFILE),)
 terraform = AWS_PROFILE=$(AWS_PROFILE) terraform
+else
+terraform = terraform
+endif
 STACKS = $(dir $(wildcard terraform/*/.))
 STACKS := $(sort $(notdir $(STACKS:/=)))
 
@@ -10,7 +14,7 @@ all:
 $(STACKS): $$@-init $$@-validate $$@-plan $$@-apply $$@-destroy
 
 STATE_CONF := state.conf
-environmental_KEY := $(PROJECT_NAME)
+environmental_KEY := $(PROJECT_NAME)/environmental/$(ACCOUNT)
 environmental_ACCOUNT := $(ACCOUNT)
 environmental_FLAGS := -var-file=env/$(ACCOUNT).tfvars
 
@@ -99,9 +103,7 @@ destroy: $(addsuffix -destroy, $(STACKS))
 %-init:
 	@echo "++++ Initializing $* stack ++++"
 	@if [ -f $(STATE_CONF) ]; then \
-		KEY_FLAG=""; \
-		if [ -n "$($*_KEY)" ]; then KEY_FLAG='-backend-config=key=$($*_KEY)/terraform.tfstate'; fi; \
-		$(terraform) -chdir=terraform/$* init -backend-config=../../$(STATE_CONF) $$KEY_FLAG $($*_FLAGS) $(TF_FLAGS); \
+		$(terraform) -chdir=terraform/$* init -backend-config=../../$(STATE_CONF) -backend-config="key=$($*_KEY)/terraform.tfstate" $($*_FLAGS) $(TF_FLAGS); \
 	else \
 		$(terraform) -chdir=terraform/$* init $($*_FLAGS) $(TF_FLAGS); \
 	fi

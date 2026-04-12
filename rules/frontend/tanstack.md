@@ -10,6 +10,3 @@ paths: ["**/*.tsx", "**/*.ts"]
 - **State**: @tanstack/react-store
 - **Tables**: @tanstack/react-table
 - **Forms**: @tanstack/react-form
-
-## SSR Projects
-- Use Tanstack Start (includes router)

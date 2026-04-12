@@ -5,14 +5,11 @@
 # terraform roles that will access this state via CI/CD pipelines.
 #
 # Flow: GitHub OIDC → Target account role → AssumeRole → Shared-services role → S3
-#
-# See architecture.md for trust policy configuration and setup checklist.
 
-bucket       = "franco-multi-account-sso-terraform-state-f66108d0"
-# key passed per-stack via Makefile (see terraform.mk)
+bucket       = "<STATE_BUCKET_NAME>"
 region       = "eu-west-2"
 use_lockfile = true
 encrypt      = true
 assume_role = {
-  role_arn = "arn:aws:iam::088994864650:role/terraform"
+  role_arn = "arn:aws:iam::<SHARED_SERVICES_ACCOUNT_ID>:role/terraform"
 }

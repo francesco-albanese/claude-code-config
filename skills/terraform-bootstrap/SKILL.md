@@ -19,13 +19,18 @@ When user requests terraform project initialization:
    ```
 
 2. **Customize generated files**:
-   - Update `state.conf` with actual S3 bucket and role ARN (key is passed per-stack via Makefile)
+   - Update `state.conf` with actual S3 bucket name and shared-services account ID (key is passed per-stack via Makefile)
    - Adjust account IDs in `env/*.tfvars`
    - Modify default tags in `providers.tf`
 
 3. **Initialize terraform**:
    ```bash
-   make environmental-init ACCOUNT=sandbox
+   make environmental-init ACCOUNT=sandbox AWS_PROFILE=sandbox-admin
+   ```
+
+4. **CI/CD**: Pass `AWS_PROFILE=` (empty) to skip profile prefix when using OIDC env vars:
+   ```bash
+   make environmental-plan ACCOUNT=sandbox AWS_PROFILE=
    ```
 
 ## Architecture Pattern
