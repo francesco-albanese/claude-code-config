@@ -4,7 +4,7 @@
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
     "MAX_THINKING_TOKENS": "128000",
-    "CLAUDE_CODE_EFFORT_LEVEL": "high"
+    "CLAUDE_CODE_EFFORT_LEVEL": "xhigh"
   },
   "permissions": {
     "allow": [
@@ -98,6 +98,16 @@
         ]
       }
     ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/.venv-langfuse/bin/python ~/.claude/hooks/langfuse_hook.py"
+          }
+        ]
+      }
+    ],
     "PermissionRequest": [],
     "Notification": [
       {
@@ -139,8 +149,10 @@
       "git:*"
     ]
   },
+  "effortLevel": "xhigh",
   "voiceEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754059296016
-  }
+  },
+  "skipAutoPermissionPrompt": true
 }

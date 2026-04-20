@@ -41,3 +41,9 @@ teams/
 
 # macOS
 .DS_Store
+
+# Local settings (contains secrets)
+settings.local.json
+
+# Langfuse hook venv
+hooks/.venv-langfuse/
