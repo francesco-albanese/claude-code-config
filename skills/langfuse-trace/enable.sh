@@ -34,16 +34,6 @@ else
   printf '%s\n' '{"env":{"TRACE_TO_LANGFUSE":"true"}}' | jq '.' > "$SETTINGS_FILE"
 fi
 
-GITIGNORE="$REPO_ROOT/.gitignore"
-PATTERN=".claude/settings.local.json"
-if [[ -f "$GITIGNORE" ]]; then
-  if ! grep -Fxq "$PATTERN" "$GITIGNORE"; then
-    echo "$PATTERN" >> "$GITIGNORE"
-  fi
-else
-  echo "$PATTERN" > "$GITIGNORE"
-fi
-
 echo "✓ Langfuse tracing enabled → .claude/settings.local.json"
 echo "  Host: $HOST"
 echo "  Verify: run a turn, check ~/.claude/state/langfuse_hook.log"
