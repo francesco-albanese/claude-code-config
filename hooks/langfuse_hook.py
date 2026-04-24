@@ -25,6 +25,7 @@ STATE_DIR = Path.home() / ".claude" / "state"
 LOG_FILE = STATE_DIR / "langfuse_hook.log"
 STATE_FILE = STATE_DIR / "langfuse_state.json"
 LOCK_FILE = STATE_DIR / "langfuse_state.lock"
+SECRETS_FILE = Path.home() / ".claude" / "langfuse-secrets.json"
 
 DEBUG = os.environ.get("CC_LANGFUSE_DEBUG", "").lower() == "true"
 MAX_CHARS = int(os.environ.get("CC_LANGFUSE_MAX_CHARS", "20000"))
@@ -470,9 +471,27 @@ def main() -> int:
     if os.environ.get("TRACE_TO_LANGFUSE", "").lower() != "true":
         return 0
 
-    public_key = os.environ.get("CC_LANGFUSE_PUBLIC_KEY") or os.environ.get("LANGFUSE_PUBLIC_KEY")
-    secret_key = os.environ.get("CC_LANGFUSE_SECRET_KEY") or os.environ.get("LANGFUSE_SECRET_KEY")
-    host = os.environ.get("CC_LANGFUSE_BASE_URL") or os.environ.get("LANGFUSE_BASE_URL") or "https://cloud.langfuse.com"
+    file_env: Dict[str, str] = {}
+    try:
+        raw = json.loads(SECRETS_FILE.read_text(encoding="utf-8"))
+        file_env = {k: v for k, v in raw.items() if isinstance(v, str)}
+    except Exception:
+        pass
+
+    def _resolve(*names: str, default: Optional[str] = None) -> Optional[str]:
+        for n in names:
+            v = os.environ.get(n)
+            if v:
+                return v
+        for n in names:
+            v = file_env.get(n)
+            if v:
+                return v
+        return default
+
+    public_key = _resolve("CC_LANGFUSE_PUBLIC_KEY", "LANGFUSE_PUBLIC_KEY")
+    secret_key = _resolve("CC_LANGFUSE_SECRET_KEY", "LANGFUSE_SECRET_KEY")
+    host = _resolve("CC_LANGFUSE_BASE_URL", "LANGFUSE_BASE_URL", default="https://cloud.langfuse.com")
 
     if not public_key or not secret_key:
         return 0
