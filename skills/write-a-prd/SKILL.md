@@ -1,23 +1,45 @@
 ---
 name: write-a-prd
-description: Create a PRD through user interview, codebase exploration, and module design, then submit as a GitHub issue. Use when user wants to write a PRD, create a product requirements document, or plan a new feature.
+description: Create a PRD through user interview, codebase exploration, and module design, then submit it as a GitHub issue or a beads epic. Use when user wants to write a PRD, create a product requirements document, or plan a new feature.
 ---
 
 This skill will be invoked when the user wants to create a PRD. You may skip steps if you don't consider them necessary.
 
-1. Ask the user for a long, detailed description of the problem they want to solve and any potential ideas for solutions.
+## 0. Ask the user which tracker to use
 
-2. Explore the repo to verify their assertions and understand the current state of the codebase.
+Use AskUserQuestion with two options: **GitHub issues** (default) or **beads (`bd`)**. Record the choice — the submission step in section 6 branches on it.
 
-3. Interview the user relentlessly about every aspect of this plan until you reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one.
+If **beads** is chosen and `.beads/` does not exist in the current working directory, run:
 
-4. Sketch out the major modules you will need to build or modify to complete the implementation. Actively look for opportunities to extract deep modules that can be tested in isolation.
+```bash
+bd init --prefix "$(basename "$PWD")"
+```
+
+This uses the default (non-stealth) mode so `.beads/` is tracked with the repo.
+
+## 1. Gather the problem
+
+Ask the user for a long, detailed description of the problem they want to solve and any potential ideas for solutions.
+
+## 2. Explore the repo
+
+Verify their assertions and understand the current state of the codebase.
+
+## 3. Interview relentlessly
+
+Interview the user about every aspect of this plan until you reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one.
+
+## 4. Sketch modules
+
+Sketch out the major modules you will need to build or modify to complete the implementation. Actively look for opportunities to extract deep modules that can be tested in isolation.
 
 A deep module (as opposed to a shallow module) is one which encapsulates a lot of functionality in a simple, testable interface which rarely changes.
 
 Check with the user that these modules match their expectations. Check with the user which modules they want tests written for.
 
-5. Once you have a complete understanding of the problem and solution, use the template below to write the PRD. The PRD should be submitted as a GitHub issue.
+## 5. Draft the PRD
+
+Use the template below.
 
 <prd-template>
 
@@ -72,3 +94,27 @@ A description of the things that are out of scope for this PRD.
 Any further notes about the feature.
 
 </prd-template>
+
+## 6. Submit the PRD
+
+### GitHub backend
+
+Create the PRD as a GitHub issue with `gh issue create`. Use the full PRD markdown as the body.
+
+### Beads backend
+
+Write the full PRD markdown to a tempfile and create it as an open epic:
+
+```bash
+TMP=$(mktemp)
+cat > "$TMP" <<'PRD'
+<full PRD markdown from step 5>
+PRD
+
+bd create "<PRD title>" \
+  --type epic \
+  --body-file "$TMP" \
+  --priority 2
+```
+
+Capture the resulting epic ID (e.g. `<prefix>-1`) and report it to the user — they'll pass it to `/prd-to-issues` next.
