@@ -5,26 +5,37 @@ description: This skill should be used when the user asks to: "initialise Ralph"
 
 # Ralph Bootstrap
 
-Initialise Ralph Wiggum Autonomous Coding loop in current project.
+Initialise the Ralph Wiggum autonomous coding loop in the current project.
 
-## Prerequisites
+## 1. Ask the user which tracker Ralph should drive
 
-- `gh` CLI installed and authenticated
-- Github task issues created iva `/prd-to-issues` skill
+Use AskUserQuestion with two options: **GitHub issues** (default) or **beads (`bd`)**. The choice picks the prompt template that gets baked into the project.
 
-## Run the bootstrap script
+## 2. Prerequisites
+
+- `gh` CLI installed and authenticated (GitHub backend)
+- `bd` CLI installed and an initialised `.beads/` database (beads backend)
+- Task issues already created via `/prd-to-issues`
+
+## 3. Run the bootstrap script
+
+Pass the chosen backend as the first argument:
 
 ```bash
-~/.claude/skills/ralph-bootstrap/scripts/bootstrap.sh
+# GitHub
+~/.claude/skills/ralph-bootstrap/scripts/bootstrap.sh github
+
+# beads
+~/.claude/skills/ralph-bootstrap/scripts/bootstrap.sh beads
 ```
 
-This creates `scripts/ralph/` directory with prompt template.
+This creates `scripts/ralph/prompt.md` containing the tracker-specific instructions (with a `<!-- tracker: github -->` or `<!-- tracker: beads -->` marker on the first line so the ralph scripts can detect the backend).
 
 ## Files Created
 
 ```
 scripts/ralph/
-├── prompt.md # Instructions for Claude (reads tasks from Github issues)
+└── prompt.md # Instructions for Claude (tracker-specific)
 ```
 
 ## Usage After Bootstrap
@@ -39,7 +50,7 @@ afk-ralph 25
 
 ## Workflow
 
-1. `/write-a-prd` - create PRD as Github issue
-2. `/prd-to-issues` - break PRD into tasks issues + create Progress Log
-3. `/ralph-bootstrap` - set up local prompt in project
-4. `ralph-once` or `afk-ralph` - run autonomous coding loops
+1. `/write-a-prd` — create PRD as GitHub issue or beads epic
+2. `/prd-to-issues` — break PRD into task issues / child beads (progress log on GitHub, stream on epic in beads)
+3. `/ralph-bootstrap` — copy the matching prompt template into the project
+4. `ralph-once` or `afk-ralph` — run autonomous coding loops
