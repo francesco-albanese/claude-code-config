@@ -150,9 +150,12 @@
     ]
   },
   "effortLevel": "xhigh",
+  "verbose": true,
+  "preferredNotifChannel": "ghostty",
+  "autoCompactEnabled": false,
+  "teammateMode": "auto",
   "voiceEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754059296016
-  },
-  "skipAutoPermissionPrompt": true
+  }
 }
