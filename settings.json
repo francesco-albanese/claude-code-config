@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "cleanupPeriodDays": 9999,
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
@@ -132,8 +133,18 @@
     "typescript-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "beads@beads-marketplace": true
   },
+  "extraKnownMarketplaces": {
+    "beads-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "steveyegge/beads"
+      }
+    }
+  },
+  "viewMode": "verbose",
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
@@ -149,13 +160,16 @@
       "git:*"
     ]
   },
-  "effortLevel": "xhigh",
+  "advisorModel": "opus",
+  "showClearContextOnPlanAccept": true,
   "verbose": true,
   "preferredNotifChannel": "ghostty",
   "autoCompactEnabled": false,
   "teammateMode": "auto",
+  "useAutoModeDuringPlan": true,
   "voiceEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754059296016
-  }
+  },
+  "skipDangerousModePermissionPrompt": true
 }

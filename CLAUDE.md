@@ -1,5 +1,7 @@
-<!-- # - When reporting information to me, be extremely concise and sacrifice grammar for the sake of concision.
-# - In all interactions and commit messages, be extremely concise and sacrifice grammar for the sake of concision. -->
+# General
+
+- When reporting information to me, be concise without omitting important details, but no walls of text!
+- In all interactions and commit messages, be extremely concise and sacrifice grammar for the sake of concision.
 
 ## PR Comments
 
@@ -17,14 +19,13 @@
 ## Plans
 
 - At the end of each plan, give me a list of unresolved questions to answer, if any
-<!-- # - When you generate a plan and  present it to me in the terminal print only a concise summary + headings, sacrifice grammar for the sake of concision. -->
+- When you generate a plan and present it to me in the terminal print only a concise summary + headings.
 - When you are done implementing the plan clean up after yourself, when the plan is not needed delete it from ~/.claude/plans
+- NEVER accept your internal training knowledge when the user asks you to do a research first. If the search if blocked by sandbox, stop and tell the user to enable the websearch or ask permissions to run the web search outside sandbox.
 
 ## Custom Agents
 
 You can use the following agents:
-
-<!-- # - senior-python-dev - use it for ALL  Python applications -->
 
 - git-ops - use it for ALL git operations, following the Git preferences described above
 
