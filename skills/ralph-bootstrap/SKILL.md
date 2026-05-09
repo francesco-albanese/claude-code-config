@@ -29,13 +29,14 @@ Pass the chosen backend as the first argument:
 ~/.claude/skills/ralph-bootstrap/scripts/bootstrap.sh beads
 ```
 
-This creates `scripts/ralph/prompt.md` containing the tracker-specific instructions (with a `<!-- tracker: github -->` or `<!-- tracker: beads -->` marker on the first line so the ralph scripts can detect the backend).
+This creates `scripts/ralph/prompt.md` containing the tracker-specific instructions (with a `<!-- tracker: github -->` or `<!-- tracker: beads -->` marker on the first line so the ralph scripts can detect the backend), plus `scripts/ralph/notify.env.example` for WhatsApp notifications.
 
 ## Files Created
 
 ```
 scripts/ralph/
-└── prompt.md # Instructions for Claude (tracker-specific)
+├── prompt.md            # Instructions for Claude (tracker-specific)
+└── notify.env.example   # WhatsApp notify template (copy to notify.env to enable AFK pings)
 ```
 
 ## Usage After Bootstrap
