@@ -49,6 +49,7 @@
     ],
     "defaultMode": "plan"
   },
+  "model": "opus",
   "hooks": {
     "PreToolUse": [
       {
@@ -162,6 +163,7 @@
   },
   "advisorModel": "opus",
   "showClearContextOnPlanAccept": true,
+  "skipDangerousModePermissionPrompt": true,
   "verbose": true,
   "preferredNotifChannel": "ghostty",
   "autoCompactEnabled": false,
@@ -170,6 +172,5 @@
   "voiceEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754059296016
-  },
-  "skipDangerousModePermissionPrompt": true
+  }
 }
