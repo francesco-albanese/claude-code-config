@@ -172,5 +172,6 @@
   "voiceEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754059296016
-  }
+  },
+  "skipAutoPermissionPrompt": true
 }
