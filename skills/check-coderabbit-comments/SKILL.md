@@ -13,7 +13,7 @@ description: Triage CodeRabbit comments on a GitHub PR or GitLab MR — fetch th
    - GitHub — `gh api graphql` on `pullRequest.reviewThreads(first:100){ id isResolved comments(first:20){ nodes{ author{login} body path line } } }`. Keep threads where the first comment's `author.login == "coderabbitai"` and `isResolved == false`. Also pull issue-level comments via `gh pr view --json comments` for CodeRabbit's summary blocks.
    - GitLab — `glab api projects/:id/merge_requests/:iid/discussions`. Keep where `notes[0].author.username == "coderabbit-ai"` and `resolved == false`.
 
-3. **Triage.** Read the file around each anchor. **Drop silently:** anything CodeRabbit tags `nitpick`, `nit`, `style`, `Prettier`, formatting-only, duplicates, suggestions that conflict with surrounding code, or items already fixed in a later commit. Bucket the rest:
+3. **Triage.** Read the file around each anchor. **Drop silently:** anything anchored to a `*.md` / `*.mdx` file, anything CodeRabbit tags `nitpick`, `nit`, `style`, `Prettier`, formatting-only, duplicates, suggestions that conflict with surrounding code, or items already fixed in a later commit. Bucket the rest:
    - 🔴 **Critical** — security, auth, data loss, broken behaviour.
    - 🟠 **Important** — bugs, perf, missing error paths, contract/API changes.
    - 🟡 **Minor** — refactors with real benefit, dead code, naming that hurts readability.

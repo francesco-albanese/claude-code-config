@@ -33,6 +33,11 @@ reviews:
   slop_detection:
     enabled: true
 
+  # Markdown is intentionally excluded — we don't want CodeRabbit on docs.
+  path_filters:
+    - "!**/*.md"
+    - "!**/*.mdx"
+
   pre_merge_checks:
     title:
       mode: warning
@@ -84,8 +89,8 @@ tools:
   # ruff:           { enabled: true }   # Python
   # eslint:         { enabled: true }   # JS / TS
   # biome:          { enabled: true }   # JS / TS
-  # markdownlint:   { enabled: true }   # Markdown
   # yamllint:       { enabled: true }   # YAML
+  # markdownlint intentionally omitted — markdown is filtered out above.
   # actionlint:     { enabled: true }   # GitHub Actions
   # tflint:         { enabled: true }   # Terraform
   # checkov:        { enabled: true }   # Terraform / IaC security
