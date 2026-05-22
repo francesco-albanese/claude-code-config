@@ -32,12 +32,17 @@ Use the Task tool with `subagent_type: "code-quality-verifier"` passing:
 
 **When no spec (no spec mode):** pass the full commit history as context. Instruct the agent to audit against commit intent — verify that the code changes match what the commits describe, and flag any discrepancies.
 
-## 4. Report Findings
+## 4. Pragmatic Programmer Check
+
+After the verifier agent returns, run `/pragmatic-programmer-check` on the same diff and include its findings in the final report under a dedicated "Pragmatic Programmer" section. Treat any FAIL from that check as a blocking issue in the quality gate.
+
+## 5. Report Findings
 
 Present the agent's findings directly in the terminal. Do not write any output files. Include the full verification summary with:
 - Spec Compliance status (omit if no spec — replace with Commit Intent Alignment)
 - Security assessment
 - Test quality assessment
 - Architecture alignment
+- Pragmatic Programmer check results (from step 4)
 - All issues with severity levels and file:line references
 - Required actions
