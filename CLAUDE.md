@@ -29,16 +29,4 @@ You can use the following agents:
 
 ## Pragmatic programmer
 
-Always follow these rules, fundamental pillars of software engineering:
-
-- orthogonality: reduce interdependency among the system’s components. Keep you code decoupled, avoid global data, avoid similar functions
-- Test state coverage , not code coverage
-- Make it easy to reuse
-- Design components that are self-contained, independent and with a single well defined purpose
-- Plan for change
-- Don’t assume it, prove it . Prove your assumptions in the actual environment
-- Crash early
-- Minimise coupling between modules
-- Design to test
-- Don’t use code you don’t understand
-- Invest in the abstraction , not the implementation
+Always follow the fundamental pillars of software engineering documented in `rules/general/pragmatic-programmer.md`.
