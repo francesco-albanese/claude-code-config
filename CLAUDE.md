@@ -1,11 +1,6 @@
 # General
 
-- When reporting information to me, be concise without omitting important details, but no walls of text!
-- In all interactions and commit messages, be extremely concise and sacrifice grammar for the sake of concision.
-
-## PR Comments
-
-- When tagging Claude in GitHub issues, use '@claude', The description of the change should be user-facing, describing which features were added or bugs were fixed.
+- In all interactions and commit messages, be extremely concise
 
 ## GitHub
 
@@ -20,7 +15,6 @@
 
 - At the end of each plan, give me a list of unresolved questions to answer, if any
 - When you generate a plan and present it to me in the terminal print only a concise summary + headings.
-- When you are done implementing the plan clean up after yourself, when the plan is not needed delete it from ~/.claude/plans
 - NEVER accept your internal training knowledge when the user asks you to do a research first. If the search if blocked by sandbox, stop and tell the user to enable the websearch or ask permissions to run the web search outside sandbox.
 
 ## Custom Agents
@@ -32,3 +26,19 @@ You can use the following agents:
 ## Agentic Coding
 
 - If you create any temporary new files, scripts, or helper files for iteration, clean up these files by removing them at the end of the task.
+
+## Pragmatic programmer
+
+Always follow these rules, fundamental pillars of software engineering:
+
+- orthogonality: reduce interdependency among the system’s components. Keep you code decoupled, avoid global data, avoid similar functions
+- Test state coverage , not code coverage
+- Make it easy to reuse
+- Design components that are self-contained, independent and with a single well defined purpose
+- Plan for change
+- Don’t assume it, prove it . Prove your assumptions in the actual environment
+- Crash early
+- Minimise coupling between modules
+- Design to test
+- Don’t use code you don’t understand
+- Invest in the abstraction , not the implementation
