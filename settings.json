@@ -5,7 +5,8 @@
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
     "MAX_THINKING_TOKENS": "128000",
-    "CLAUDE_CODE_EFFORT_LEVEL": "xhigh"
+    "CLAUDE_CODE_EFFORT_LEVEL": "xhigh",
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "180000"
   },
   "permissions": {
     "allow": [
@@ -166,7 +167,6 @@
   "skipDangerousModePermissionPrompt": true,
   "verbose": true,
   "preferredNotifChannel": "ghostty",
-  "autoCompactEnabled": false,
   "teammateMode": "auto",
   "skipAutoPermissionPrompt": true,
   "useAutoModeDuringPlan": true,
