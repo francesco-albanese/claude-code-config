@@ -39,6 +39,13 @@ sessions/
 tasks/
 teams/
 
+# Daemon/jobs runtime state
+daemon/
+daemon.log
+jobs/
+.last-cleanup
+.last-update-result.json
+
 # macOS
 .DS_Store
 
