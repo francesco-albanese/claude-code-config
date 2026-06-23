@@ -51,13 +51,3 @@ jobs/
 
 # Local settings (contains secrets)
 settings.local.json
-
-# Langfuse hook venv
-hooks/.venv-langfuse/
-hooks/__pycache__/
-
-# Langfuse hook secrets
-langfuse-secrets.json
-state/langfuse_hook.log
-state/langfuse_state.json
-state/langfuse_state.lock

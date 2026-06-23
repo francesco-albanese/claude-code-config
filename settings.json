@@ -100,16 +100,7 @@
         ]
       }
     ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/.venv-langfuse/bin/python ~/.claude/hooks/langfuse_hook.py"
-          }
-        ]
-      }
-    ],
+    "Stop": [],
     "PermissionRequest": [],
     "Notification": [
       {
