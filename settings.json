@@ -1,11 +1,11 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "cleanupPeriodDays": 9999,
-  "autoCompactWindow": 180000,
   "env": {
     "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
     "MAX_THINKING_TOKENS": "128000",
-    "CLAUDE_CODE_EFFORT_LEVEL": "xhigh"
+    "CLAUDE_CODE_EFFORT_LEVEL": "xhigh",
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "180000"
   },
   "permissions": {
     "allow": [
@@ -47,7 +47,7 @@
       "Bash(git push -f*)",
       "Bash(git push * -f *)"
     ],
-    "defaultMode": "plan"
+    "defaultMode": "bypassPermissions"
   },
   "model": "opus",
   "hooks": {
@@ -102,17 +102,7 @@
     ],
     "Stop": [],
     "PermissionRequest": [],
-    "Notification": [
-      {
-        "matcher": "permission_prompt|idle_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "afplay /System/Library/Sounds/Glass.aiff"
-          }
-        ]
-      }
-    ]
+    "Notification": []
   },
   "statusLine": {
     "type": "command",
@@ -138,11 +128,11 @@
     }
   },
   "viewMode": "verbose",
-  "advisorModel": "opus",
   "showClearContextOnPlanAccept": true,
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "verbose": true,
-  "preferredNotifChannel": "ghostty",
+  "preferredNotifChannel": "iterm2",
   "teammateMode": "auto",
   "skipAutoPermissionPrompt": true,
   "useAutoModeDuringPlan": true,

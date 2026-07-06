@@ -1,6 +1,6 @@
 # General
 
-- In all interactions and commit messages, be extremely concise
+- In all interactions and commit messages, be concise and don't use jargon. Explain concepts in simple English.
 
 ## GitHub
 
@@ -15,8 +15,7 @@
 
 - At the end of each plan, give me a list of unresolved questions to answer, if any
 - When you generate a plan and present it to me in the terminal print only a concise summary + headings.
-- NEVER accept your internal training knowledge when the user asks you to do a research first. If the search if blocked by sandbox, stop and tell the user to enable the websearch or ask permissions to run the web search outside sandbox.
-
+- NEVER accept your internal training knowledge when the user asks you to do a research first
 ## Custom Agents
 
 You can use the following agents:
